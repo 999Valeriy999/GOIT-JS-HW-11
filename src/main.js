@@ -1,5 +1,5 @@
-// логика работы приложения
-//импорт библиотеки и модулей
+// логіка роботи додатку
+// імпорт бібліотеки та модулів
 
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
@@ -7,55 +7,55 @@ import 'izitoast/dist/css/iziToast.min.css';
 import searchImages from './js/pixabay-api';
 import { renderGallery } from './js/render-functions';
 
-// Cсылки на элементы формы поиска, ввода и индикатора загрузки.
+// Посилання на елементи форми пошуку, введення та індикатора завантаження.
 const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('search-input');
 const loader = document.querySelector('.loader');
 
-// clearGallery очищает контейнер галереи.
+// clearGallery очищує контейнер галереї.
 function clearGallery() {
   const galleryContainer = document.getElementById('gallery');
   galleryContainer.innerHTML = '';
 }
 
-// hideLoader скрывает индикатор загрузки.
+// hideLoader приховує індикатор завантаження.
 function hideLoader() {
   loader.style.display = 'none';
 }
 
-// showLoader отображает индикатор загрузки.
+// showLoader відображає індикатор завантаження.
 const showLoader = () => {
   loader.style.display = 'block';
 };
 
-// Обработчик события для формы поиска
+// Обробник події для форми пошуку
 searchForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  // Получаем значение из поля ввода и убираем пробелы по краям
+  // Отримуємо значення з поля введення і прибираємо пробіли по краях
   const query = searchInput.value.trim();
 
-  // Очищаем галерею перед новым поиском
+  // Очищаємо галерею перед новим пошуком
   clearGallery();
 
-  // Если запрос пустой, выводится предупреждение, и происходит очистка галереи
+  // Якщо запит порожній, виводиться попередження, і відбувається очищення галереї
   if (query === '') {
     iziToast.warning({
       title: 'Warning',
       message: 'Please enter a search term.',
     });
-    clearGallery(); // Очистка галереи при вводе пустой строки
+    clearGallery(); // Очищення галереї при введенні порожнього рядка
     return;
   }
 
-  // Иначе, вызывается функция showLoader для отображения индикатора загрузки
+  // Інакше, викликається функція showLoader для відображення індикатора завантаження
   showLoader();
 
-  // Отправка запроса к API
+  // Відправлення запиту до API
   searchImages(query)
     .then(images => {
       if (images.length === 0) {
-        // Если изображения не найдены, выводим сообщение об ошибке
+        // Якщо зображення не знайдено, виводимо повідомлення про помилку
         iziToast.error({
           title: 'Error',
           message:

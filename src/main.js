@@ -4,8 +4,8 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-import searchImages from './js/pixabay-api';
-import { renderGallery } from './js/render-functions';
+import searchImages from './js/pixabay-api.js';
+import { renderGallery } from './js/render-functions.js';
 
 // Посилання на елементи форми пошуку, введення та індикатора завантаження.
 const searchForm = document.getElementById('search-form');

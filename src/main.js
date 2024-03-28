@@ -63,7 +63,6 @@ searchForm.addEventListener('submit', function (event) {
         });
       } else {
         renderGallery(images);
-        searchInput.value = '';
       }
     })
     .catch(error => {

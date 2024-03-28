@@ -68,7 +68,6 @@ searchForm.addEventListener('submit', function (event) {
     })
     .catch(error => {
       console.error('Error in search:', error);
-      searchInput.value = '';
       iziToast.error({
         title: 'Error',
         message: 'An error occurred while fetching images. Please try again.',
@@ -76,5 +75,6 @@ searchForm.addEventListener('submit', function (event) {
     })
     .finally(() => {
       hideLoader();
+      searchInput.value = '';
     });
 });
